@@ -1,3 +1,9 @@
+<?php
+include '../../common/navbar.php';
+include '../../common/check-login.php';
+
+if (isAuthenticated()) {
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -13,9 +19,7 @@
   <body>
 
     <?php 
-    $path = $_SERVER['DOCUMENT_ROOT'];
-    $path .= "/keuangan/common/navbar.php";
-    include $path;
+    echo $navbar;
     ?>
 
     <div class="container-sm" style="margin-top:2rem;">
@@ -43,3 +47,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
   </body>
 </html>
+<?php
+} else {
+  header("Location: ../../login");
+}
+?>
