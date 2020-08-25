@@ -84,9 +84,7 @@ if (isAuthenticated()) {
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </body>
 </html>
-<?php
-}
-?>
+
 
 <script>
 function save() {
@@ -104,3 +102,8 @@ function save() {
   console.log('success')
 }
 </script>
+<?php
+} else {
+  header("Location: login/");
+}
+?>
