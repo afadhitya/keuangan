@@ -1,3 +1,8 @@
+<?php
+include "../common/check-login.php";
+
+if (!isAuthenticated()) {
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -17,14 +22,24 @@
           <div class="card shadow-lg rounded">
             <h5 class="card-header">Selamat Datang</h5>
             <div class="card-body">
+
+              <?php 
+              $error = isset($_GET['error']) ? $_GET['error'] : "" ;
+              if ($error == 1) { 
+              ?>
+              <div class="alert alert-danger" role="alert">
+                Username atau password salah!
+              </div>
+              <?php } ?>
+
               <form method="post" action="loginprocess.php">
                 <div class="form-group">
                   <label for="username">Username</label>
-                  <input type="text" class="form-control" id="username" aria-describedby="username" placeholder="Enter your username">
+                  <input type="text" class="form-control" id="username" name="username" aria-describedby="username" placeholder="Enter your username">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                 </div>
                 <div class="form-group form-check">
                   <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -45,3 +60,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
   </body>
 </html>
+<?php
+} else  {
+  header("Location: ../");
+}
+?>

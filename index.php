@@ -1,3 +1,9 @@
+<?php
+include "common/check-login.php";
+include "common/navbar.php";
+
+if (isAuthenticated()) {
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -13,13 +19,7 @@
   <body>
 
     <?php 
-    $path = $_SERVER['DOCUMENT_ROOT'];
-    $path .= "/keuangan/common/navbar.php";
-    include $path;
-
-    $path = $_SERVER['DOCUMENT_ROOT'];
-    $path .= "/keuangan/common/check-session.php";
-    include $path;
+    echo $navbar;
     ?>
 
     <div class="container-sm" style="margin-top:2rem;">
@@ -84,6 +84,9 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </body>
 </html>
+<?php
+}
+?>
 
 <script>
 function save() {
